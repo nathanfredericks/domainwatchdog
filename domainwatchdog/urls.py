@@ -18,8 +18,10 @@ from django.contrib import admin
 from django.urls import path
 
 import domains.views
+import welcome.views
 
 urlpatterns = [
-    path('domains/', domains.views.index, name='domains'),
+    path('', welcome.views.index, name='home'),
+    path('domains/', domains.views.index, name='dashboard'),
     path('admin/', admin.site.urls),
 ]
