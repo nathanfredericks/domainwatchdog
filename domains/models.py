@@ -1,8 +1,10 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.urls import reverse
 
 
 class Domain(models.Model):
+    """Model representing a registered domain name (e.g. example.com)"""
     # Domain name (format: example.com)
     name = models.CharField(max_length=255)
     # Domain description (optionally set by user for display in dashboard)
@@ -21,3 +23,7 @@ class Domain(models.Model):
     # Domain owner
     # This refers to the model's owner in the application's database, **not the registration contact in the WHOIS database.**
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+
+    def get_absolute_url(self):
+        """Returns the url to access a particular domain instance."""
+        return reverse('domain-detail', args=[str(self.id)])

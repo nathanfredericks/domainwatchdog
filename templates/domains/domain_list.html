@@ -1,0 +1,23 @@
+{% extends "welcome/base_generic.html" %}
+
+{% block title %}Domains | Domain Watchdog{% endblock %}
+
+{% block content %}
+    <h1>Domain List</h1>
+    {% if domain_list %}
+        <table>
+            <tr>
+                <th>Domain name</th>
+                <th>Domain description</th>
+            </tr>
+            {% for domain in domain_list %}
+                <tr>
+                    <td>{{ domain.name }}</td>
+                    <td>{{ domain.description }}</td>
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+    <p>Domain Watchdog is not monitoring any domains.</p>
+    {% endif %}
+{% endblock %}

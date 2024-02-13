@@ -1,0 +1,8 @@
+{% extends "welcome/base_generic.html" %}
+
+{% block title %}{{ domain.name }} | Domain Watchdog{% endblock %}
+
+{% block content %}
+    <h1>{{ domain.name }}</h1>
+    <p>{{ domain.description }}</p>
+{% endblock %}
