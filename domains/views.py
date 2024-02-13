@@ -1,4 +1,5 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from domains import tasks
 from domains.models import Domain
 from django.views import generic
 
@@ -20,4 +21,6 @@ class DomainCreateView(LoginRequiredMixin, generic.CreateView):
 
     def form_valid(self, form):
         form.instance.user = self.request.user
+        domain = form.save()
+        tasks.whois_lookup.delay(domain_id=domain.id)
         return super().form_valid(form)

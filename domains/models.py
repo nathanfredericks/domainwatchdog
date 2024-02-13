@@ -16,9 +16,10 @@ class Domain(models.Model):
     creation_date = models.DateTimeField(blank=True, null=True)
     registry_expiry_date = models.DateTimeField(blank=True, null=True)
     registrar = models.CharField(max_length=255, blank=True)
-    # If the WHOIS lookup is successful, this property will be switched to true.
-    # If there is an error, the property will stay false and the user will be expected to enter domain properties manually.
-    is_autofilled = models.BooleanField(default=False)
+
+    # Last WHOIS lookup
+    # This will be null when the model is first created, then switched to true after a successful WHOIS lookup.
+    last_whois_lookup = models.DateTimeField(blank=True, null=True)
 
     # Domain owner
     # This refers to the model's owner in the application's database, **not the registration contact in the WHOIS database.**
