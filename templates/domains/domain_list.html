@@ -7,13 +7,15 @@
     {% if domain_list %}
         <table>
             <tr>
-                <th>Domain name</th>
-                <th>Domain description</th>
+                <th>Domain Name</th>
+                <th>Domain Description</th>
+                <th>Domain Expiration Date</th>
             </tr>
             {% for domain in domain_list %}
                 <tr>
                     <td>{{ domain.name }}</td>
                     <td>{{ domain.description }}</td>
+                    <td>{{ domain.registry_expiry_date|date:"M d, Y" }}</td>
                 </tr>
             {% endfor %}
         </table>

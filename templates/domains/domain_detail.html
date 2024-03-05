@@ -4,5 +4,30 @@
 
 {% block content %}
     <h1>{{ domain.name }}</h1>
-    <p>{{ domain.description }}</p>
+    {% if domain.description %}
+        <h2>{{ domain.description }}</h2>
+    {% endif %}
+    <table>
+        <tr>
+            <th>Updated Date:</th>
+            <td>{{ domain.updated_date|date:"M d, Y" }}</td>
+        </tr>
+        <tr>
+            <th>Creation Date:</th>
+            <td>{{ domain.creation_date|date:"M d, Y" }}</td>
+        </tr>
+        <tr>
+            <th>Registry Expiry Date:</th>
+            <td>{{ domain.registry_expiry_date|date:"M d, Y" }}</td>
+        </tr>
+        <tr>
+            <th>Registrar</th>
+            <td>{{ domain.registrar }}</td>
+        </tr>
+    </table>
+    {% if domain.last_whois_lookup %}
+        <p>{{ domain.name }} was last checked on {{ domain.last_whois_lookup|date:"M d, Y g:i A" }}.</p>
+    {% else %}
+        <p>{{ domain.name }} was never checked.</p>
+    {% endif %}
 {% endblock %}
