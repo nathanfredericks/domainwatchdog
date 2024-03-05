@@ -15,7 +15,7 @@ class Domain(models.Model):
     updated_date = models.DateTimeField(blank=True, null=True)
     creation_date = models.DateTimeField(blank=True, null=True)
     registry_expiry_date = models.DateTimeField(blank=True, null=True)
-    registrar = models.CharField(max_length=255, blank=True)
+    registrar = models.CharField(max_length=255, blank=True, null=True)
 
     # Last WHOIS lookup
     # This will be null when the model is first created, then switched to true after a successful WHOIS lookup.
